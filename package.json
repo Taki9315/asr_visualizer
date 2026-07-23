@@ -1,0 +1,21 @@
+{
+  "name": "asr-visualizer",
+  "private": true,
+  "version": "0.2.0",
+  "description": "Autonomous Security Robot production-reference digital assembly (ASR-ENG-001 Rev B companion)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "typecheck": "tsc --noEmit",
+    "build": "node scripts/audit-interfaces.mjs && node scripts/clean-build.mjs && tsc --noEmit && vite build && node scripts/build-worker.mjs",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "@types/three": "^0.170.0",
+    "typescript": "~5.6.3",
+    "vite": "^6.0.7"
+  }
+}

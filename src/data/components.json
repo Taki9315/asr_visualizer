@@ -1,0 +1,731 @@
+{
+  "disclaimer": "Engineering layout simulator dataset for ASR-ENG-001 Rev B. All placements and every value flagged provisional are design-basis assumptions for layout study only. TBD items are not approved for procurement. Do not use provisional dimensions for manufacturing.",
+  "components": [
+    {
+      "id": "chassis",
+      "name": "Main structural chassis",
+      "bomRef": "ASR-011",
+      "category": "structure",
+      "parentId": null,
+      "zoneId": null,
+      "description": "Custom welded/bolted base frame (6061-T6 aluminium candidate). Modelled as floor plate, two side rails and two bulkheads; the front bulkhead has a right-side cutout as a harness pass-through / PDU lug access opening. Final dimensions depend on mass, wheelbase, track and CG analysis (DEC-003/DEC-004).",
+      "status": "assumed",
+      "sourceNote": "No released drawing exists. 900 x 560 mm footprint and 90 mm ground clearance are layout assumptions only.",
+      "geometry": {
+        "primitives": [
+          { "kind": "box", "sizeMm": [760, 480, 12], "offsetMm": [0, 0, 0], "colorHex": "#6f747d" },
+          { "kind": "box", "sizeMm": [710, 30, 70], "offsetMm": [-13, 255, 41], "colorHex": "#5c6169" },
+          { "kind": "box", "sizeMm": [710, 30, 70], "offsetMm": [-13, -255, 41], "colorHex": "#5c6169" },
+          { "kind": "box", "sizeMm": [24, 320, 70], "offsetMm": [325, 90, 41], "colorHex": "#5c6169" },
+          { "kind": "box", "sizeMm": [24, 500, 70], "offsetMm": [-350, 0, 41], "colorHex": "#5c6169" }
+        ],
+        "styled": {
+          "kind": "chassisFrame",
+          "paramsMm": { "lenMm": 900, "widMm": 560, "hMm": 82 }
+        },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [0, 0, 96], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 18, "provisional": true, "source": "Assumed for a 900 x 560 aluminium frame; no FEA or drawing released." },
+        "envelopeMm": { "size": [900, 600, 104], "provisional": true }
+      },
+      "power": {
+        "voltage": "n/a",
+        "typicalW": { "value": 0, "provisional": false },
+        "peakW": { "value": 0, "provisional": false }
+      },
+      "cooling": { "method": "Passive", "notes": "Frame acts as heat-spreading path for controller cold plates (ASR-047).", "provisional": true },
+      "service": { "access": "Full teardown", "interval": "Annual structural inspection; torque checks monthly (spec 22.1).", "notes": "Lifting points must be rated for final mass; do not lift from mast." },
+      "keepOuts": [],
+      "explodeDir": [0, 0, -0.5],
+      "locked": true,
+      "isEnclosure": false
+    },
+    {
+      "id": "enclosure",
+      "name": "Outer equipment enclosure",
+      "bomRef": "ASR-014",
+      "category": "enclosure",
+      "parentId": "chassis",
+      "zoneId": null,
+      "description": "Low faceted IP65/IP67-target enclosure with a hollow vertical lower tub, outward shoulder break, inward-tapered upper armour, angular wheel covers, joined front/rear fascia modules, continuous sealed deck and perimeter rail. Wall construction, glands, tolerances and final latch hardware remain provisional.",
+      "status": "assumed",
+      "sourceNote": "The 900 x 590 x 225 mm body basis and all armour surfacing are concept-image-derived layout assumptions cross-checked against Autonomous_Security_Robot_Exterior_Body_Geometry.md. IP target, material stack and released interfaces remain open decisions (G-09).",
+      "geometry": {
+        "primitives": [
+          { "kind": "box", "sizeMm": [900, 590, 225], "offsetMm": [0, 0, 0], "colorHex": "#aeb3b7" }
+        ],
+        "styled": { "kind": "bodyShell", "paramsMm": { "lenMm": 900, "widMm": 590, "hMm": 225 } },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [0, 0, 207.5], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 9, "provisional": true, "source": "Assumed polycarbonate/aluminium hybrid shell." },
+        "envelopeMm": { "size": [1000, 666, 285], "provisional": true }
+      },
+      "power": {
+        "voltage": "n/a",
+        "typicalW": { "value": 0, "provisional": false },
+        "peakW": { "value": 0, "provisional": false }
+      },
+      "cooling": { "method": "Sealed with managed thermal path", "notes": "Thermal model TBD (R-10). Pressure-equalisation vents ASR-035.", "provisional": true },
+      "service": { "access": "Removable lid / lockable panels", "interval": "Weekly gland and seal inspection.", "notes": "Autonomy must be disabled while covers are open (SR-012)." },
+      "keepOuts": [],
+      "explodeDir": [0, 0, 1],
+      "locked": true,
+      "isEnclosure": true
+    },
+    {
+      "id": "wheel-fl",
+      "name": "Hub motor wheel — front left",
+      "bomRef": "ASR-001",
+      "category": "drive",
+      "parentId": "chassis",
+      "zoneId": null,
+      "description": "Brushless hub motor wheel, 10 x 2.5 in pneumatic tyre, 3-phase BLDC with Hall sensors. Manufacturer, rating, phase current, axle geometry and pole pairs are unverified (release gate G-01).",
+      "status": "provisional",
+      "sourceNote": "BOM ASR-001: 'Do not assume ratings'. Tyre OD 254 mm is nominal. The 90 mm rendered tyre width is photo-derived; the 132 mm assembly envelope includes provisional axle hardware and cable bend. Measure the installed wheel before release.",
+      "geometry": {
+        "primitives": [
+          { "kind": "cylinder", "radiusMm": 127, "lengthMm": 90, "axis": "y", "offsetMm": [0, 0, 0], "colorHex": "#26262a" },
+          { "kind": "cylinder", "radiusMm": 88, "lengthMm": 78, "axis": "y", "offsetMm": [0, 0, 0], "colorHex": "#b9bec6" }
+        ],
+        "styled": { "kind": "wheel", "paramsMm": { "odMm": 254, "widthMm": 90, "hubMm": 176 } },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [280, 355, 127], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 3, "provisional": true, "source": "Typical for 10-in hub motor assembly; not weighed." },
+        "envelopeMm": { "size": [260, 132, 260], "provisional": true }
+      },
+      "power": {
+        "voltage": "48 V nominal (verify)",
+        "typicalW": { "value": 150, "provisional": true, "source": "Power budget: 500 W-class design basis only." },
+        "peakW": { "value": 800, "provisional": true, "source": "Power budget provisional peak; verify by characterization (TST-002)." }
+      },
+      "cooling": { "method": "Passive hub convection", "notes": "Thermal limit unknown until motor characterization (spec 7.1).", "provisional": true },
+      "service": { "access": "External, axle nuts + torque arms", "interval": "Pre-patrol tyre/axle check; monthly torque check.", "notes": "Dual torque arms per motor (ASR-018); locking axle hardware (ASR-019)." },
+      "keepOuts": [],
+      "explodeDir": [0, 1, 0.15],
+      "locked": false,
+      "isEnclosure": false
+    },
+    {
+      "id": "wheel-fr",
+      "name": "Hub motor wheel — front right",
+      "bomRef": "ASR-001",
+      "category": "drive",
+      "parentId": "chassis",
+      "zoneId": null,
+      "description": "Brushless hub motor wheel, 10 x 2.5 in pneumatic tyre, 3-phase BLDC with Hall sensors. Manufacturer, rating, phase current, axle geometry and pole pairs are unverified (release gate G-01).",
+      "status": "provisional",
+      "sourceNote": "BOM ASR-001: 'Do not assume ratings'. Tyre OD 254 mm is nominal. The 90 mm rendered tyre width is photo-derived; the 132 mm assembly envelope includes provisional axle hardware and cable bend. Measure the installed wheel before release.",
+      "geometry": {
+        "primitives": [
+          { "kind": "cylinder", "radiusMm": 127, "lengthMm": 90, "axis": "y", "offsetMm": [0, 0, 0], "colorHex": "#26262a" },
+          { "kind": "cylinder", "radiusMm": 88, "lengthMm": 78, "axis": "y", "offsetMm": [0, 0, 0], "colorHex": "#b9bec6" }
+        ],
+        "styled": { "kind": "wheel", "paramsMm": { "odMm": 254, "widthMm": 90, "hubMm": 176 } },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [280, -355, 127], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 3, "provisional": true, "source": "Typical for 10-in hub motor assembly; not weighed." },
+        "envelopeMm": { "size": [260, 132, 260], "provisional": true }
+      },
+      "power": {
+        "voltage": "48 V nominal (verify)",
+        "typicalW": { "value": 150, "provisional": true, "source": "Power budget: 500 W-class design basis only." },
+        "peakW": { "value": 800, "provisional": true, "source": "Power budget provisional peak; verify by characterization (TST-002)." }
+      },
+      "cooling": { "method": "Passive hub convection", "notes": "Thermal limit unknown until motor characterization (spec 7.1).", "provisional": true },
+      "service": { "access": "External, axle nuts + torque arms", "interval": "Pre-patrol tyre/axle check; monthly torque check.", "notes": "Dual torque arms per motor (ASR-018); locking axle hardware (ASR-019)." },
+      "keepOuts": [],
+      "explodeDir": [0, -1, 0.15],
+      "locked": false,
+      "isEnclosure": false
+    },
+    {
+      "id": "wheel-rl",
+      "name": "Hub motor wheel — rear left",
+      "bomRef": "ASR-001",
+      "category": "drive",
+      "parentId": "chassis",
+      "zoneId": null,
+      "description": "Brushless hub motor wheel, 10 x 2.5 in pneumatic tyre, 3-phase BLDC with Hall sensors. Manufacturer, rating, phase current, axle geometry and pole pairs are unverified (release gate G-01).",
+      "status": "provisional",
+      "sourceNote": "BOM ASR-001: 'Do not assume ratings'. Tyre OD 254 mm is nominal. The 90 mm rendered tyre width is photo-derived; the 132 mm assembly envelope includes provisional axle hardware and cable bend. Measure the installed wheel before release.",
+      "geometry": {
+        "primitives": [
+          { "kind": "cylinder", "radiusMm": 127, "lengthMm": 90, "axis": "y", "offsetMm": [0, 0, 0], "colorHex": "#26262a" },
+          { "kind": "cylinder", "radiusMm": 88, "lengthMm": 78, "axis": "y", "offsetMm": [0, 0, 0], "colorHex": "#b9bec6" }
+        ],
+        "styled": { "kind": "wheel", "paramsMm": { "odMm": 254, "widthMm": 90, "hubMm": 176 } },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [-280, 355, 127], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 3, "provisional": true, "source": "Typical for 10-in hub motor assembly; not weighed." },
+        "envelopeMm": { "size": [260, 132, 260], "provisional": true }
+      },
+      "power": {
+        "voltage": "48 V nominal (verify)",
+        "typicalW": { "value": 150, "provisional": true, "source": "Power budget: 500 W-class design basis only." },
+        "peakW": { "value": 800, "provisional": true, "source": "Power budget provisional peak; verify by characterization (TST-002)." }
+      },
+      "cooling": { "method": "Passive hub convection", "notes": "Thermal limit unknown until motor characterization (spec 7.1).", "provisional": true },
+      "service": { "access": "External, axle nuts + torque arms", "interval": "Pre-patrol tyre/axle check; monthly torque check.", "notes": "Dual torque arms per motor (ASR-018); locking axle hardware (ASR-019)." },
+      "keepOuts": [],
+      "explodeDir": [0, 1, 0.15],
+      "locked": false,
+      "isEnclosure": false
+    },
+    {
+      "id": "wheel-rr",
+      "name": "Hub motor wheel — rear right",
+      "bomRef": "ASR-001",
+      "category": "drive",
+      "parentId": "chassis",
+      "zoneId": null,
+      "description": "Brushless hub motor wheel, 10 x 2.5 in pneumatic tyre, 3-phase BLDC with Hall sensors. Manufacturer, rating, phase current, axle geometry and pole pairs are unverified (release gate G-01).",
+      "status": "provisional",
+      "sourceNote": "BOM ASR-001: 'Do not assume ratings'. Tyre OD 254 mm is nominal. The 90 mm rendered tyre width is photo-derived; the 132 mm assembly envelope includes provisional axle hardware and cable bend. Measure the installed wheel before release.",
+      "geometry": {
+        "primitives": [
+          { "kind": "cylinder", "radiusMm": 127, "lengthMm": 90, "axis": "y", "offsetMm": [0, 0, 0], "colorHex": "#26262a" },
+          { "kind": "cylinder", "radiusMm": 88, "lengthMm": 78, "axis": "y", "offsetMm": [0, 0, 0], "colorHex": "#b9bec6" }
+        ],
+        "styled": { "kind": "wheel", "paramsMm": { "odMm": 254, "widthMm": 90, "hubMm": 176 } },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [-280, -355, 127], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 3, "provisional": true, "source": "Typical for 10-in hub motor assembly; not weighed." },
+        "envelopeMm": { "size": [260, 132, 260], "provisional": true }
+      },
+      "power": {
+        "voltage": "48 V nominal (verify)",
+        "typicalW": { "value": 150, "provisional": true, "source": "Power budget: 500 W-class design basis only." },
+        "peakW": { "value": 800, "provisional": true, "source": "Power budget provisional peak; verify by characterization (TST-002)." }
+      },
+      "cooling": { "method": "Passive hub convection", "notes": "Thermal limit unknown until motor characterization (spec 7.1).", "provisional": true },
+      "service": { "access": "External, axle nuts + torque arms", "interval": "Pre-patrol tyre/axle check; monthly torque check.", "notes": "Dual torque arms per motor (ASR-018); locking axle hardware (ASR-019)." },
+      "keepOuts": [],
+      "explodeDir": [0, -1, 0.15],
+      "locked": false,
+      "isEnclosure": false
+    },
+    {
+      "id": "battery",
+      "name": "Traction battery pack (16S LiFePO4)",
+      "bomRef": "ASR-064",
+      "category": "energy",
+      "parentId": "chassis",
+      "zoneId": "zone-battery",
+      "description": "48 V-class traction pack: 16S LiFePO4, 51.2 V nominal, provisional 60 Ah / 3.07 kWh, integrated BMS (ASR-065). Pack vendor, cell format, enclosure and exact dimensions are unselected (release gate G-04).",
+      "status": "provisional",
+      "sourceNote": "Capacity and chemistry from BOM ASR-064 provisional basis. A 350 x 250 x 165 mm low-profile packaging envelope is now required to clear the sealed deck; vendor selection and measured interfaces remain release-gate G-04.",
+      "geometry": {
+        "primitives": [
+          { "kind": "box", "sizeMm": [350, 250, 165], "offsetMm": [0, 0, 0], "colorHex": "#c79a3c" }
+        ],
+        "styled": { "kind": "battery", "paramsMm": { "lenMm": 350, "widMm": 250, "hMm": 165 } },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [0, 0, 195], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 30, "provisional": true, "source": "Typical 16S 60 Ah LiFePO4 pack range 28-34 kg; not weighed." },
+        "envelopeMm": { "size": [350, 252, 175], "provisional": true }
+      },
+      "power": {
+        "voltage": "51.2 V nominal / 58.4 V max charge",
+        "typicalW": { "value": 0, "provisional": true, "source": "Energy source, not a load. Usable energy approx 2211.8 Wh (Appendix A planning number)." },
+        "peakW": { "value": 0, "provisional": true, "source": "Discharge capability >=150 A continuous provisional (ASR-065)." }
+      },
+      "cooling": { "method": "Passive; temperature-monitored", "notes": "4x temperature probes (ASR-095); charging below approved temperature requires heater option (ASR-094).", "provisional": true },
+      "service": { "access": "Top extraction after lid removal", "interval": "Quarterly capacity trend; annual assessment (spec 22.1).", "notes": "Service disconnect (ASR-067) and main fuse (ASR-066) live at pack positive. Vendor-authorized service only." },
+      "keepOuts": [
+        {
+          "id": "battery-ko-service",
+          "label": "Battery extraction clearance",
+          "kind": "service-clearance",
+          "sizeMm": [350, 250, 140],
+          "offsetMm": [0, 0, 130],
+          "provisional": true
+        },
+        {
+          "id": "battery-ko-connector",
+          "label": "Main connector / disconnect keep-out",
+          "kind": "connector-keepout",
+          "sizeMm": [48, 100, 100],
+          "offsetMm": [223, -60, -10],
+          "provisional": true
+        }
+      ],
+      "explodeDir": [0, 0, 1],
+      "locked": false,
+      "isEnclosure": false
+    },
+    {
+      "id": "jetson",
+      "name": "NVIDIA Jetson AGX Orin 64GB Developer Kit",
+      "bomRef": "ASR-003",
+      "category": "compute",
+      "parentId": "chassis",
+      "zoneId": "zone-compute",
+      "description": "Edge AI computer (P/N 945-13730-0057-000). Phase 1 primary compute running ROS 2 / Nav2 / YOLO. Production robot should move to a rugged carrier (ASR-099).",
+      "status": "vendor-datasheet",
+      "sourceNote": "Dev kit external dimensions 110 x 110 x 71.65 mm per NVIDIA documentation. Mounted-orientation and bracket stack-up not yet designed.",
+      "geometry": {
+        "primitives": [
+          { "kind": "box", "sizeMm": [110, 110, 71.65], "offsetMm": [0, 0, 0], "colorHex": "#3fa06a" }
+        ],
+        "styled": { "kind": "jetson", "paramsMm": { "sizeMm": 110, "hMm": 71.65 } },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [-270, 170, 205], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 0.873, "provisional": false, "source": "NVIDIA Jetson AGX Orin Developer Kit mechanical specification: approximately 872.5 g." },
+        "envelopeMm": { "size": [136, 136, 72], "provisional": true }
+      },
+      "power": {
+        "voltage": "19-20 VDC via 48-19 V DC-DC (ASR-076)",
+        "typicalW": { "value": 45, "provisional": false, "source": "Power budget row: monitored power mode." },
+        "peakW": { "value": 60, "provisional": false, "source": "Power budget row; validate brownout margin (TST-004)." }
+      },
+      "cooling": { "method": "Integrated heatsink + fan", "notes": "Sealed-enclosure thermal headroom must be validated (ASR-100, TST-020). Airflow keep-out above unit.", "provisional": true },
+      "service": { "access": "Electronics bay service panel", "interval": "Quarterly software/security review; fan check weekly.", "notes": "Pre-imaged spare storage recommended (spec 22.2). Vibration isolation mounts ASR-032." },
+      "keepOuts": [
+        {
+          "id": "jetson-ko-airflow",
+          "label": "Fan airflow / connector clearance",
+          "kind": "service-clearance",
+          "sizeMm": [110, 110, 80],
+          "offsetMm": [0, 0, 76],
+          "provisional": true
+        }
+      ],
+      "explodeDir": [-0.5, 0.6, 1],
+      "locked": false,
+      "isEnclosure": false
+    },
+    {
+      "id": "mc-a",
+      "name": "Motor controller A (dual-channel BLDC)",
+      "bomRef": "ASR-046",
+      "category": "drive",
+      "parentId": "chassis",
+      "zoneId": "zone-drive",
+      "description": "Dual-channel industrial BLDC controller for left wheel pair. 60 V class, Hall + encoder input, CAN, regenerative braking, STO. Candidate: Roboteq FBLG2360T-class; final selection is blocked by motor characterization (G-01/G-05).",
+      "status": "provisional",
+      "sourceNote": "Master BOM candidate Roboteq FBLG2360T vendor envelope 140 x 140 x 25 mm. References sheet says SBLG2360TS and must be reconciled before procurement or hole-pattern release.",
+      "geometry": {
+        "primitives": [
+          { "kind": "box", "sizeMm": [140, 140, 25], "offsetMm": [0, 0, 0], "colorHex": "#34383e" }
+        ],
+        "styled": { "kind": "finnedBox", "paramsMm": { "lenMm": 140, "widMm": 140, "hMm": 25 }, "palette": { "body": "#34383e", "fins": "#8f969c" } },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [-300, 20, 175], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 1.4, "provisional": true, "source": "Typical for candidate class; final model TBD." },
+        "envelopeMm": { "size": [164, 158, 25], "provisional": true }
+      },
+      "power": {
+        "voltage": "48-58.4 V traction / 24 V logic",
+        "typicalW": { "value": 12, "provisional": true, "source": "Controller losses only; traction power passes through to motors." },
+        "peakW": { "value": 40, "provisional": true, "source": "Loss estimate at peak current; verify after motor test." }
+      },
+      "cooling": { "method": "Conduction to heat spreader (ASR-047)", "notes": "Thermal plate path to chassis; verify with thermal soak TST-020.", "provisional": true },
+      "service": { "access": "Electronics bay service panel", "interval": "Monthly connector/fastener check.", "notes": "STO wiring is part of the independent safety chain (IO-007) — protected routing per SR-014." },
+      "keepOuts": [],
+      "explodeDir": [-0.8, 0.3, 0.6],
+      "locked": false,
+      "isEnclosure": false
+    },
+    {
+      "id": "mc-b",
+      "name": "Motor controller B (dual-channel BLDC)",
+      "bomRef": "ASR-046",
+      "category": "drive",
+      "parentId": "chassis",
+      "zoneId": "zone-drive",
+      "description": "Dual-channel industrial BLDC controller for right wheel pair. 60 V class, Hall + encoder input, CAN, regenerative braking, STO. Candidate: Roboteq FBLG2360T-class; final selection is blocked by motor characterization (G-01/G-05).",
+      "status": "provisional",
+      "sourceNote": "Master BOM candidate Roboteq FBLG2360T vendor envelope 140 x 140 x 25 mm. References sheet says SBLG2360TS and must be reconciled before procurement or hole-pattern release.",
+      "geometry": {
+        "primitives": [
+          { "kind": "box", "sizeMm": [140, 140, 25], "offsetMm": [0, 0, 0], "colorHex": "#34383e" }
+        ],
+        "styled": { "kind": "finnedBox", "paramsMm": { "lenMm": 140, "widMm": 140, "hMm": 25 }, "palette": { "body": "#34383e", "fins": "#8f969c" } },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [-300, -150, 175], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 1.4, "provisional": true, "source": "Typical for candidate class; final model TBD." },
+        "envelopeMm": { "size": [164, 158, 25], "provisional": true }
+      },
+      "power": {
+        "voltage": "48-58.4 V traction / 24 V logic",
+        "typicalW": { "value": 12, "provisional": true, "source": "Controller losses only; traction power passes through to motors." },
+        "peakW": { "value": 40, "provisional": true, "source": "Loss estimate at peak current; verify after motor test." }
+      },
+      "cooling": { "method": "Conduction to heat spreader (ASR-047)", "notes": "Thermal plate path to chassis; verify with thermal soak TST-020.", "provisional": true },
+      "service": { "access": "Electronics bay service panel", "interval": "Monthly connector/fastener check.", "notes": "STO wiring is part of the independent safety chain (IO-007) — protected routing per SR-014." },
+      "keepOuts": [],
+      "explodeDir": [-0.8, -0.5, 0.6],
+      "locked": false,
+      "isEnclosure": false
+    },
+    {
+      "id": "dcdc-19v",
+      "name": "DC-DC converter 48-19 V (Jetson)",
+      "bomRef": "ASR-076",
+      "category": "power",
+      "parentId": "chassis",
+      "zoneId": "zone-power",
+      "description": "Isolated or low-noise 48 V to 19 V converter, >=120 W continuous with surge margin and remote enable. Feeds the Jetson compute branch. Model unselected.",
+      "status": "provisional",
+      "sourceNote": "Envelope assumed from typical 120-150 W industrial brick converters. Input range must span full battery voltage (42-58.4 V).",
+      "geometry": {
+        "primitives": [
+          { "kind": "box", "sizeMm": [140, 100, 45], "offsetMm": [0, 0, 0], "colorHex": "#d98a4f" }
+        ],
+        "styled": { "kind": "finnedBox", "paramsMm": { "lenMm": 140, "widMm": 100, "hMm": 45 }, "palette": { "body": "#c77c46" } },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [270, 185, 185], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 0.55, "provisional": true, "source": "Typical industrial converter brick; model TBD." },
+        "envelopeMm": { "size": [164, 118, 45], "provisional": true }
+      },
+      "power": {
+        "voltage": "48 V in / 19 V out",
+        "typicalW": { "value": 8, "provisional": true, "source": "Conversion loss estimate at 45 W load, ~85-90% efficiency." },
+        "peakW": { "value": 15, "provisional": true, "source": "Loss at 120 W surge." }
+      },
+      "cooling": { "method": "Baseplate conduction", "notes": "Derate per datasheet at enclosure temperature; verify in TST-020.", "provisional": true },
+      "service": { "access": "Electronics bay service panel", "interval": "Monthly terminal torque check.", "notes": "Brownout at traction transients must not reboot compute (TST-004, R-03)." },
+      "keepOuts": [],
+      "explodeDir": [0.5, 0.5, 0.8],
+      "locked": false,
+      "isEnclosure": false
+    },
+    {
+      "id": "dcdc-24v",
+      "name": "DC-DC converter 48-24 V (safety/aux)",
+      "bomRef": "ASR-077",
+      "category": "power",
+      "parentId": "chassis",
+      "zoneId": "zone-power",
+      "description": "48 V to 24 V converter, 10-15 A, for safety controller, relays, LiDAR rail, router and accessories. Stacked above the 48-19 V converter on standoffs. Model unselected.",
+      "status": "provisional",
+      "sourceNote": "Envelope assumed from typical 250-350 W industrial converters.",
+      "geometry": {
+        "primitives": [
+          { "kind": "box", "sizeMm": [140, 100, 45], "offsetMm": [0, 0, 0], "colorHex": "#d98a4f" }
+        ],
+        "styled": { "kind": "finnedBox", "paramsMm": { "lenMm": 140, "widMm": 100, "hMm": 45 }, "palette": { "body": "#c77c46" } },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [270, 185, 225], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 0.6, "provisional": true, "source": "Typical industrial converter brick; model TBD." },
+        "envelopeMm": { "size": [164, 118, 45], "provisional": true }
+      },
+      "power": {
+        "voltage": "48 V in / 24 V out",
+        "typicalW": { "value": 10, "provisional": true, "source": "Conversion loss estimate for aux rail loads." },
+        "peakW": { "value": 20, "provisional": true, "source": "Loss at full aux load." }
+      },
+      "cooling": { "method": "Baseplate conduction", "notes": "Derate per datasheet at enclosure temperature; verify in TST-020.", "provisional": true },
+      "service": { "access": "Electronics bay service panel", "interval": "Monthly terminal torque check.", "notes": "24 V safety branch requires dedicated availability-oriented protection (spec 17.2)." },
+      "keepOuts": [],
+      "explodeDir": [0.6, 0.1, 0.8],
+      "locked": false,
+      "isEnclosure": false
+    },
+    {
+      "id": "pdu",
+      "name": "Power distribution & fuse module",
+      "bomRef": "ASR-072",
+      "category": "power",
+      "parentId": "chassis",
+      "zoneId": "zone-power",
+      "description": "Combined representation of the protected distribution group: positive/negative busbars (ASR-072/073), motor branch fuses (ASR-074), auxiliary fuse block (ASR-075), main contactor + precharge (ASR-068/069/070) and current sensor (ASR-071). Finger-safe covers required.",
+      "status": "assumed",
+      "sourceNote": "Modelled as one block for layout study. Actual DIN-rail panel layout (ASR-015) is a separate mechanical design output.",
+      "geometry": {
+        "primitives": [
+          { "kind": "box", "sizeMm": [220, 160, 70], "offsetMm": [0, 0, 0], "colorHex": "#b8433a" }
+        ],
+        "styled": { "kind": "pdu", "paramsMm": { "lenMm": 220, "widMm": 160, "hMm": 70 } },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [345, -100, 210], "rotationDeg": [0, 0, 90] },
+      "physical": {
+        "massKg": { "value": 1.8, "provisional": true, "source": "Sum of typical busbar/fuse/contactor masses; not designed." },
+        "envelopeMm": { "size": [236, 176, 73], "provisional": true }
+      },
+      "power": {
+        "voltage": "51.2 V bus",
+        "typicalW": { "value": 5, "provisional": true, "source": "Contactor coil + distribution losses estimate." },
+        "peakW": { "value": 12, "provisional": true, "source": "Peak-current I2R loss estimate; fuse schedule TBD (spec 17.2)." }
+      },
+      "cooling": { "method": "Passive", "notes": "Busbar sizing after prospective fault-current analysis.", "provisional": true },
+      "service": { "access": "Front connector face + top service clearance", "interval": "Weekly visual; monthly torque check on lugs.", "notes": "Main fuse must sit close to battery positive (spec 8.4). Spare fuse kit ASR-096." },
+      "keepOuts": [
+        {
+          "id": "pdu-ko-service",
+          "label": "Fuse access clearance",
+          "kind": "service-clearance",
+          "sizeMm": [220, 160, 120],
+          "offsetMm": [0, 0, 95],
+          "provisional": true
+        },
+        {
+          "id": "pdu-ko-connector",
+          "label": "Lug / harness bend-radius keep-out",
+          "kind": "connector-keepout",
+          "sizeMm": [70, 140, 70],
+          "offsetMm": [105, 0, 75],
+          "provisional": true
+        }
+      ],
+      "explodeDir": [0.6, -0.6, 0.8],
+      "locked": false,
+      "isEnclosure": false
+    },
+    {
+      "id": "modem",
+      "name": "LTE/5G router-modem",
+      "bomRef": "ASR-121",
+      "category": "comms",
+      "parentId": "chassis",
+      "zoneId": "zone-drive",
+      "description": "Industrial dual-SIM 5G/LTE router, 9-36 VDC on the 24 V aux rail. Provides the secure outbound VPN tunnel (Tailscale overlay, CR-001). Model and carrier plan unselected (G-08). Mounted on standoffs above motor controller A.",
+      "status": "provisional",
+      "sourceNote": "Envelope assumed from typical industrial 5G routers (~130 x 95 x 35 mm). RF bay location TBD.",
+      "geometry": {
+        "primitives": [
+          { "kind": "box", "sizeMm": [130, 95, 35], "offsetMm": [0, 0, 0], "colorHex": "#8f5fd0" }
+        ],
+        "styled": { "kind": "modem", "paramsMm": { "lenMm": 130, "widMm": 95, "hMm": 35 } },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [-300, 20, 220], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 0.45, "provisional": true, "source": "Typical industrial router; model TBD." },
+        "envelopeMm": { "size": [148, 111, 37], "provisional": true }
+      },
+      "power": {
+        "voltage": "9-36 VDC (24 V aux rail)",
+        "typicalW": { "value": 15, "provisional": true, "source": "Power budget row: 5G router 15 W typical." },
+        "peakW": { "value": 30, "provisional": true, "source": "Power budget row: 30 W peak." }
+      },
+      "cooling": { "method": "Passive fins", "notes": "Keep away from controller heat spreaders; verify in thermal soak.", "provisional": true },
+      "service": { "access": "Electronics bay service panel; SIM tray access required", "interval": "Quarterly firmware/security review (CR-006).", "notes": "Management plane locked down; no direct WAN exposure of cameras (CR-001)." },
+      "keepOuts": [],
+      "explodeDir": [-0.5, 0.4, 1.2],
+      "locked": false,
+      "isEnclosure": false
+    },
+    {
+      "id": "ptz",
+      "name": "PTZ camera + mast (Amcrest IP8M-2899EW-AI-V2)",
+      "bomRef": "ASR-007",
+      "category": "sensor",
+      "parentId": "enclosure",
+      "zoneId": "zone-sensor",
+      "description": "4K/8MP PTZ, 25x optical zoom, PoE+, IP66, RTSP/ONVIF. Modelled together with its mast (ASR-027) as one assembly. Surveillance/teleoperation only — not a navigation or safety sensor. Network hardening required (R-13).",
+      "status": "provisional",
+      "sourceNote": "Purchased Amcrest camera is 160 mm diameter x 270.5 mm high and 2.60 kg; included PFB305W arm is approximately 202.5 x 115 x 160 mm. This upright concept mast is a provisional custom adapter and must be measured/released before fabrication.",
+      "geometry": {
+        "primitives": [
+          { "kind": "box", "sizeMm": [124, 124, 10], "offsetMm": [0, 0, 5], "colorHex": "#dfe2e6" },
+          { "kind": "box", "sizeMm": [70, 76, 65], "offsetMm": [-10, 0, 46.5], "colorHex": "#dfe2e6" },
+          { "kind": "cylinder", "radiusMm": 43, "lengthMm": 24, "axis": "z", "offsetMm": [-10, 0, 85], "colorHex": "#eff1f3" },
+          { "kind": "sphere", "radiusMm": 74, "offsetMm": [-10, 0, 189], "colorHex": "#f4f5f7" }
+        ],
+        "styled": { "kind": "ptz", "paramsMm": { "mastMm": 65 } },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [-250, 0, 349], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 5.2, "provisional": true, "source": "2.60 kg camera + approximately 0.87 kg supplied arm + 1.7 kg provisional mast/base allowance." },
+        "envelopeMm": { "size": [162, 162, 270], "provisional": true }
+      },
+      "power": {
+        "voltage": "PoE+ 802.3at or 12 VDC 3 A",
+        "typicalW": { "value": 20, "provisional": true, "source": "Power budget: full PoE+ class budgeted until measured." },
+        "peakW": { "value": 36, "provisional": true, "source": "Power budget peak." }
+      },
+      "cooling": { "method": "Sealed outdoor housing (IP66)", "notes": "Solar load and washdown behaviour TBD (ER-004/ER-007).", "provisional": true },
+      "service": { "access": "External; mast lowering procedure TBD", "interval": "Weekly lens clean; quarterly PTZ range test (TST-017).", "notes": "Mast raises CG — rollover review R-16. Do not lift robot by the mast." },
+      "keepOuts": [],
+      "explodeDir": [-0.4, 0, 1],
+      "locked": false,
+      "isEnclosure": false
+    },
+    {
+      "id": "depth-front",
+      "name": "Front depth camera (Intel RealSense D435i)",
+      "bomRef": "ASR-005",
+      "category": "sensor",
+      "parentId": "enclosure",
+      "zoneId": "zone-sensor",
+      "description": "Wide-FOV active stereo depth camera with IMU, USB 3. Near-field perception and visual odometry experiments on the front lower sensor bar (ASR-028). Not safety-rated.",
+      "status": "vendor-datasheet",
+      "sourceNote": "Camera body approx 90 x 25 x 25 mm per Intel datasheet. Sensor-bar bracket and pitch adjustment not yet designed.",
+      "geometry": {
+        "primitives": [
+          { "kind": "box", "sizeMm": [25, 90, 25], "offsetMm": [0, 0, 0], "colorHex": "#c9cdd4" }
+        ],
+        "styled": { "kind": "depthCamera" },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [462, 0, 266], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 0.072, "provisional": false, "source": "Intel datasheet approx 72 g." },
+        "envelopeMm": { "size": [40, 90, 28], "provisional": true }
+      },
+      "power": {
+        "voltage": "5 V via USB 3",
+        "typicalW": { "value": 4.5, "provisional": false, "source": "Power budget row." },
+        "peakW": { "value": 8, "provisional": false, "source": "Power budget row; measure actual USB draw and cable drop." }
+      },
+      "cooling": { "method": "Passive", "notes": "Monitor housing temperature in direct sun; weather hood ASR-031.", "provisional": true },
+      "service": { "access": "External front face", "interval": "Pre-patrol lens check.", "notes": "Locking short USB cable + industrial hub required (R-14). Extrinsic calibration stored per chassis serial (spec 9.1)." },
+      "keepOuts": [],
+      "explodeDir": [1, 0, 0.2],
+      "locked": false,
+      "isEnclosure": false
+    },
+    {
+      "id": "lidar",
+      "name": "3D LiDAR (Livox MID-360)",
+      "bomRef": "ASR-004",
+      "category": "sensor",
+      "parentId": "enclosure",
+      "zoneId": "zone-sensor",
+      "description": "360-degree non-repetitive scanning LiDAR, 9-27 VDC, IP67, integrated IMU. Primary mapping/localization sensor on a rigid riser near vehicle centre (ASR-026). Not a safety-rated protective scanner.",
+      "status": "vendor-datasheet",
+      "sourceNote": "Livox MID-360 body is 65 x 65 x 60 mm (connector side reaches about 73 mm), 265 g, with four M3 holes 5 mm deep. The 40 mm riser and its 84 mm adapter footprint are provisional.",
+      "geometry": {
+        "primitives": [
+          { "kind": "box", "sizeMm": [84, 84, 40], "offsetMm": [0, 0, 20], "colorHex": "#3f434a" },
+          { "kind": "box", "sizeMm": [65, 65, 28], "offsetMm": [0, 0, 54], "colorHex": "#e8e9eb" },
+          { "kind": "sphere", "radiusMm": 27, "offsetMm": [0, 0, 75], "colorHex": "#0b2738" }
+        ],
+        "styled": { "kind": "lidar", "paramsMm": { "riserMm": 40 } },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [285, 105, 326], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 0.265, "provisional": false, "source": "Livox specification 265 g." },
+        "envelopeMm": { "size": [84, 84, 100], "provisional": true }
+      },
+      "power": {
+        "voltage": "9-27 VDC (24 V sensor rail)",
+        "typicalW": { "value": 6.5, "provisional": false, "source": "BOM ASR-004: average 6.5 W." },
+        "peakW": { "value": 14, "provisional": false, "source": "BOM ASR-004: cold self-heating peak up to 14 W." }
+      },
+      "cooling": { "method": "Passive, IP67 housing", "notes": "Verify rain/fog/dust performance (R-08).", "provisional": false },
+      "service": { "access": "External top deck", "interval": "Pre-patrol window clean; quarterly calibration verification.", "notes": "Time sync via PTP; calibrated base_link transform stored per serial (spec 9.1)." },
+      "keepOuts": [],
+      "explodeDir": [0.3, 0, 1],
+      "locked": false,
+      "isEnclosure": false
+    },
+    {
+      "id": "ant-left",
+      "name": "Optional cellular diversity antenna — not installed",
+      "bomRef": "ASR-030",
+      "category": "comms",
+      "parentId": "enclosure",
+      "zoneId": "zone-sensor",
+      "description": "Optional second whip retained in the engineering dataset for RF studies but not installed or shown in the default production presentation.",
+      "status": "assumed",
+      "sourceNote": "Generic 200 mm whip placeholder. Final antenna set defined by router selection and RF separation requirements (ASR-030).",
+      "geometry": {
+        "primitives": [
+          { "kind": "cylinder", "radiusMm": 15, "lengthMm": 16, "axis": "z", "offsetMm": [0, 0, 8], "colorHex": "#26282c" },
+          { "kind": "cylinder", "radiusMm": 6, "lengthMm": 200, "axis": "z", "offsetMm": [0, 0, 116], "colorHex": "#26282c" }
+        ],
+        "styled": { "kind": "antenna", "paramsMm": { "whipMm": 190 } },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [-365, 205, 326], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 0.06, "provisional": true, "source": "Typical whip antenna." },
+        "envelopeMm": { "size": [32, 32, 220], "provisional": true }
+      },
+      "power": {
+        "voltage": "RF (passive)",
+        "typicalW": { "value": 0, "provisional": false },
+        "peakW": { "value": 0, "provisional": false }
+      },
+      "cooling": { "method": "n/a", "notes": "", "provisional": false },
+      "service": { "access": "External", "interval": "Weekly visual check.", "notes": "Protected cable routing through gland; drip loop required (spec 6.3)." },
+      "keepOuts": [],
+      "explodeDir": [-0.3, 0.5, 1],
+      "locked": false,
+      "isEnclosure": false
+    },
+    {
+      "id": "ant-right",
+      "name": "Primary cellular antenna",
+      "bomRef": "ASR-030",
+      "category": "comms",
+      "parentId": "enclosure",
+      "zoneId": "zone-sensor",
+      "description": "Single installed whip antenna for the 5G/LTE router on the sealed rear deck hardpoint. Antenna model and gain remain TBD.",
+      "status": "assumed",
+      "sourceNote": "Generic 200 mm whip placeholder. Final antenna set defined by router selection and RF separation requirements (ASR-030).",
+      "geometry": {
+        "primitives": [
+          { "kind": "cylinder", "radiusMm": 15, "lengthMm": 16, "axis": "z", "offsetMm": [0, 0, 8], "colorHex": "#26282c" },
+          { "kind": "cylinder", "radiusMm": 6, "lengthMm": 200, "axis": "z", "offsetMm": [0, 0, 116], "colorHex": "#26282c" }
+        ],
+        "styled": { "kind": "antenna", "paramsMm": { "whipMm": 190 } },
+        "glbUrl": null,
+        "glbUnits": "mm"
+      },
+      "placement": { "positionMm": [-365, -205, 326], "rotationDeg": [0, 0, 0] },
+      "physical": {
+        "massKg": { "value": 0.06, "provisional": true, "source": "Typical whip antenna." },
+        "envelopeMm": { "size": [32, 32, 220], "provisional": true }
+      },
+      "power": {
+        "voltage": "RF (passive)",
+        "typicalW": { "value": 0, "provisional": false },
+        "peakW": { "value": 0, "provisional": false }
+      },
+      "cooling": { "method": "n/a", "notes": "", "provisional": false },
+      "service": { "access": "External", "interval": "Weekly visual check.", "notes": "Protected cable routing through gland; drip loop required (spec 6.3)." },
+      "keepOuts": [],
+      "explodeDir": [-0.3, -0.5, 1],
+      "locked": false,
+      "isEnclosure": false
+    }
+  ]
+}

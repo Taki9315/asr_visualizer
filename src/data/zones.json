@@ -1,0 +1,49 @@
+{
+  "zones": [
+    {
+      "id": "zone-battery",
+      "label": "Battery zone",
+      "colorHex": "#d9a441",
+      "centerMm": [0, 0, 195],
+      "sizeMm": [380, 280, 180],
+      "description": "Low-profile central traction-energy volume, seated on the cradle and capped below the sealed deck. Includes lateral clamp allowance.",
+      "provisional": true
+    },
+    {
+      "id": "zone-compute",
+      "label": "Compute zone",
+      "colorHex": "#4f9fd9",
+      "centerMm": [-280, 170, 205],
+      "sizeMm": [220, 180, 120],
+      "description": "Rear-left electronics bay: Jetson AGX Orin and storage. Airflow and vibration isolation required.",
+      "provisional": true
+    },
+    {
+      "id": "zone-power",
+      "label": "Power conversion zone",
+      "colorHex": "#d96a4f",
+      "centerMm": [300, 0, 220],
+      "sizeMm": [300, 500, 140],
+      "description": "Raised front power bay above the chassis structure: distribution/fuse module and stacked DC-DC converters on isolated trays. Finger-safe covers and separation from signal harnesses required.",
+      "provisional": true
+    },
+    {
+      "id": "zone-drive",
+      "label": "Drive & aux electronics zone",
+      "colorHex": "#a06ad9",
+      "centerMm": [-300, -65, 190],
+      "sizeMm": [250, 340, 150],
+      "description": "Rear drive-electronics bay: dual-channel motor controllers with heat spreaders, router-modem stack.",
+      "provisional": true
+    },
+    {
+      "id": "zone-sensor",
+      "label": "Sensor zone",
+      "colorHex": "#57c785",
+      "centerMm": [10, 0, 450],
+      "sizeMm": [1000, 650, 360],
+      "description": "Top deck and mast: LiDAR, integrated PTZ pedestal, one installed antenna and front sensor fascia. Coverage drawing and FOV occlusion study pending (spec 9.1).",
+      "provisional": true
+    }
+  ]
+}

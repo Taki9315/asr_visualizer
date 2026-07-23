@@ -1,0 +1,231 @@
+{
+  "cables": [
+    {
+      "id": "cbl-batt-pdu",
+      "label": "Battery -> distribution (main DC)",
+      "bomRef": "CBL-001/CBL-005",
+      "fromId": "battery",
+      "toId": "pdu",
+      "colorHex": "#e04b3f",
+      "diameterMm": 8,
+      "pointsMm": [
+        [150, -45, 245],
+        [215, -80, 230],
+        [300, -100, 220]
+      ],
+      "provisional": true
+    },
+    {
+      "id": "cbl-pdu-mca",
+      "label": "Distribution -> motor controller A (traction branch)",
+      "bomRef": "CBL-006/CBL-008",
+      "fromId": "pdu",
+      "toId": "mc-a",
+      "colorHex": "#e08a3f",
+      "diameterMm": 6,
+      "pointsMm": [
+        [300, -70, 220],
+        [120, -200, 205],
+        [-120, -170, 185],
+        [-260, 0, 180]
+      ],
+      "provisional": true
+    },
+    {
+      "id": "cbl-pdu-mcb",
+      "label": "Distribution -> motor controller B (traction branch)",
+      "bomRef": "CBL-007/CBL-009",
+      "fromId": "pdu",
+      "toId": "mc-b",
+      "colorHex": "#e08a3f",
+      "diameterMm": 6,
+      "pointsMm": [
+        [300, -120, 220],
+        [80, -225, 205],
+        [-140, -220, 185],
+        [-260, -145, 180]
+      ],
+      "provisional": true
+    },
+    {
+      "id": "cbl-pdu-dcdc",
+      "label": "Distribution -> DC-DC converters (aux feed)",
+      "bomRef": "CBL-010",
+      "fromId": "pdu",
+      "toId": "dcdc-24v",
+      "colorHex": "#e0c04f",
+      "diameterMm": 5,
+      "pointsMm": [
+        [300, -45, 220],
+        [310, 40, 225],
+        [285, 130, 225],
+        [270, 175, 225]
+      ],
+      "provisional": true
+    },
+    {
+      "id": "cbl-dcdc19-jetson",
+      "label": "48-19 V converter -> Jetson (compute power)",
+      "bomRef": "CBL-011",
+      "fromId": "dcdc-19v",
+      "toId": "jetson",
+      "colorHex": "#4f9fd9",
+      "diameterMm": 4,
+      "pointsMm": [
+        [270, 175, 185],
+        [100, 220, 190],
+        [-80, 220, 200],
+        [-220, 190, 205],
+        [-270, 170, 205]
+      ],
+      "provisional": true
+    },
+    {
+      "id": "cbl-jetson-lidar",
+      "label": "Jetson -> LiDAR (100BASE-TX + PTP)",
+      "bomRef": null,
+      "fromId": "jetson",
+      "toId": "lidar",
+      "colorHex": "#57c785",
+      "diameterMm": 4,
+      "pointsMm": [
+        [-250, 190, 210],
+        [-120, 140, 245],
+        [100, 50, 280],
+        [250, 80, 293],
+        [285, 105, 294]
+      ],
+      "provisional": true
+    },
+    {
+      "id": "cbl-jetson-depth",
+      "label": "Jetson -> front depth camera (USB 3, locking)",
+      "bomRef": null,
+      "fromId": "jetson",
+      "toId": "depth-front",
+      "colorHex": "#6fd9c1",
+      "diameterMm": 4,
+      "pointsMm": [
+        [-240, 180, 205],
+        [-80, 160, 230],
+        [160, 110, 260],
+        [380, 30, 266],
+        [444, 0, 266]
+      ],
+      "provisional": true
+    },
+    {
+      "id": "cbl-poe-ptz",
+      "label": "PDU (PoE+ PSE feed, ASR-080 switch not yet modelled) -> PTZ camera",
+      "bomRef": "ASR-080",
+      "fromId": "pdu",
+      "toId": "ptz",
+      "colorHex": "#3f7fd9",
+      "diameterMm": 5,
+      "pointsMm": [
+        [300, -100, 220],
+        [80, -130, 240],
+        [-120, -70, 275],
+        [-220, 0, 292],
+        [-250, 0, 294]
+      ],
+      "provisional": true
+    },
+    {
+      "id": "cbl-modem-antl",
+      "label": "Router-modem -> left antenna (coax)",
+      "bomRef": null,
+      "fromId": "modem",
+      "toId": "ant-left",
+      "colorHex": "#9b6bd6",
+      "diameterMm": 3.5,
+      "pointsMm": [
+        [-300, 45, 220],
+        [-345, 145, 270],
+        [-365, 200, 292],
+        [-365, 205, 294]
+      ],
+      "provisional": true
+    },
+    {
+      "id": "cbl-modem-antr",
+      "label": "Router-modem -> right antenna (coax)",
+      "bomRef": null,
+      "fromId": "modem",
+      "toId": "ant-right",
+      "colorHex": "#9b6bd6",
+      "diameterMm": 3.5,
+      "pointsMm": [
+        [-300, -5, 220],
+        [-345, -145, 270],
+        [-365, -200, 292],
+        [-365, -205, 294]
+      ],
+      "provisional": true
+    },
+    {
+      "id": "cbl-mca-wheel-fl",
+      "label": "Controller A -> front-left sealed axle bulkhead",
+      "bomRef": "CBL-006",
+      "fromId": "mc-a",
+      "toId": "wheel-fl",
+      "colorHex": "#d68a42",
+      "diameterMm": 6,
+      "pointsMm": [
+        [-270, 45, 175],
+        [-80, 170, 160],
+        [180, 245, 150],
+        [280, 270, 140]
+      ],
+      "provisional": true
+    },
+    {
+      "id": "cbl-mca-wheel-rl",
+      "label": "Controller A -> rear-left sealed axle bulkhead",
+      "bomRef": "CBL-008",
+      "fromId": "mc-a",
+      "toId": "wheel-rl",
+      "colorHex": "#d68a42",
+      "diameterMm": 6,
+      "pointsMm": [
+        [-300, 60, 175],
+        [-320, 170, 160],
+        [-300, 245, 150],
+        [-280, 270, 140]
+      ],
+      "provisional": true
+    },
+    {
+      "id": "cbl-mcb-wheel-fr",
+      "label": "Controller B -> front-right sealed axle bulkhead",
+      "bomRef": "CBL-007",
+      "fromId": "mc-b",
+      "toId": "wheel-fr",
+      "colorHex": "#d68a42",
+      "diameterMm": 6,
+      "pointsMm": [
+        [-270, -150, 175],
+        [-40, -210, 160],
+        [180, -245, 150],
+        [280, -270, 140]
+      ],
+      "provisional": true
+    },
+    {
+      "id": "cbl-mcb-wheel-rr",
+      "label": "Controller B -> rear-right sealed axle bulkhead",
+      "bomRef": "CBL-009",
+      "fromId": "mc-b",
+      "toId": "wheel-rr",
+      "colorHex": "#d68a42",
+      "diameterMm": 6,
+      "pointsMm": [
+        [-300, -170, 175],
+        [-320, -210, 160],
+        [-300, -245, 150],
+        [-280, -270, 140]
+      ],
+      "provisional": true
+    }
+  ]
+}
